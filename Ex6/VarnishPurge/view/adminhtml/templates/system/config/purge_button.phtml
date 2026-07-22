@@ -1,0 +1,40 @@
+<?php
+/** @var \Ex6\VarnishPurge\Block\Adminhtml\System\Config\PurgeButton $block */
+?>
+<button type="button"
+        id="<?= $block->escapeHtmlAttr($block->getHtmlId()) ?>_button"
+        class="action-default scalable"
+        onclick="ex6PurgeVarnish()">
+    <span><?= $block->escapeHtml($block->getButtonLabel()) ?></span>
+</button>
+<span id="ex6-varnish-purge-result" style="margin-left:10px;"></span>
+
+<script>
+function ex6PurgeVarnish() {
+    var btn = document.getElementById('<?= $block->escapeJs($block->getHtmlId()) ?>_button');
+    var result = document.getElementById('ex6-varnish-purge-result');
+    btn.disabled = true;
+    result.textContent = '<?= $block->escapeJs(__('Purging...')) ?>';
+    result.style.color = '';
+
+    fetch('<?= $block->escapeJs($block->getAjaxUrl()) ?>?form_key=' + window.FORM_KEY, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+        result.textContent = data.message || '<?= $block->escapeJs(__('Done.')) ?>';
+        result.style.color = data.success ? 'green' : 'red';
+    })
+    .catch(function() {
+        result.textContent = '<?= $block->escapeJs(__('Request failed.')) ?>';
+        result.style.color = 'red';
+    })
+    .finally(function() {
+        btn.disabled = false;
+    });
+}
+</script>

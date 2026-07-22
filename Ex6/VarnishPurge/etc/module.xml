@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Ex6_VarnishPurge">
+        <sequence>
+            <module name="Magento_Backend"/>
+            <module name="Magento_PageCache"/>
+        </sequence>
+    </module>
+</config>
