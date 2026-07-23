@@ -1,4 +1,4 @@
-# Ex6_VarnishPurge
+# Nx6_VarnishPurge
 
 Magento 2 module that adds a manual "force flush" action for Varnish full
 page cache, exposed in two places in the admin panel:
@@ -37,16 +37,16 @@ entire cache. The request/response is logged for troubleshooting.
   `view/adminhtml/templates/system/cache/additional.phtml` template (swapped
   in via `view/adminhtml/layout/adminhtml_cache_index.xml`, no core files
   are modified).
-- Access to both buttons is gated by the `Ex6_VarnishPurge::varnish_purge`
+- Access to both buttons is gated by the `Nx6_VarnishPurge::varnish_purge`
   ACL resource (`etc/acl.xml`).
 
 ## Installation
 
-Copy the `Ex6/VarnishPurge` directory into your Magento installation's
+Copy the `Nx6/VarnishPurge` directory into your Magento installation's
 `app/code/` directory, then run:
 
 ```
-bin/magento module:enable Ex6_VarnishPurge
+bin/magento module:enable Nx6_VarnishPurge
 bin/magento setup:upgrade
 ```
 
@@ -57,7 +57,7 @@ before using either purge button.
 ## Structure
 
 ```
-Ex6/VarnishPurge/
+Nx6/VarnishPurge/
 ├── Block/
 │   └── Adminhtml/
 │       ├── Cache/Additional.php           # Extends core cache management block
